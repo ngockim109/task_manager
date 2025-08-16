@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Label from '@/components/common/Label'
 import PhoneInput from '@/components/common/PhoneInput'
 import Button from '@/components/common/Button'
+import PrimaryLink from '@/components/common/PrimaryLink'
 
 const PhoneInputForm = () => {
   const [phone, setPhone] = useState<string>('')
@@ -16,24 +17,29 @@ const PhoneInputForm = () => {
   }
   return (
     <form onSubmit={(e) => onSubmit(e)}>
-      <div className='flex justify-center items-center flex-col'>
-      <h3>Sign in</h3>
-      <small>Please enter your phone to sign in</small>
-      <div>
-        <Label error={isPhoneValid}>Phone Input</Label>
-        <PhoneInput
-          onChange={(e) => setPhone(e.target.value)}
-          onValidationChange={(isValid, _phone, code) => {
-            setPhoneValid(isValid)
-            setCountry(code)
-          }}
-        />
+      <div className="flex justify-center items-center flex-col gap-4">
+        <h3>Sign in</h3>
+        <small>Please enter your phone to sign in</small>
+        <div>
+          <Label error={isPhoneValid}>Phone Input</Label>
+          <PhoneInput
+            onChange={(e) => setPhone(e.target.value)}
+            onValidationChange={(isValid, _phone, code) => {
+              setPhoneValid(isValid)
+              setCountry(code)
+            }}
+          />
+        </div>
+        <div className="w-full">
+          <Button loading={isLoading} type="submit">
+            Next
+          </Button>
+        </div>
+        <p className="text-muted-foreground">
+          Don't have an account?{' '}
+          <PrimaryLink to="/register">Sign up</PrimaryLink>
+        </p>
       </div>
-      <div className="w-full">
-        <Button loading={isLoading}>Next</Button>
-      </div>
-      </div>
-      
     </form>
   )
 }

@@ -12,7 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as DashboardRouteRouteImport } from './routes/_dashboard/route'
 import { Route as AuthRouteRouteImport } from './routes/_auth/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardTasksRouteImport } from './routes/_dashboard/tasks'
+import { Route as DashboardMessageRouteImport } from './routes/_dashboard/message'
+import { Route as DashboardEmployeeRouteImport } from './routes/_dashboard/employee'
 import { Route as DashboardDashboardRouteImport } from './routes/_dashboard/dashboard'
+import { Route as AuthRegisterRouteImport } from './routes/_auth/register'
 import { Route as AuthOtpVerifyRouteImport } from './routes/_auth/otp-verify'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
 
@@ -29,10 +33,30 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardTasksRoute = DashboardTasksRouteImport.update({
+  id: '/tasks',
+  path: '/tasks',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+const DashboardMessageRoute = DashboardMessageRouteImport.update({
+  id: '/message',
+  path: '/message',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+const DashboardEmployeeRoute = DashboardEmployeeRouteImport.update({
+  id: '/employee',
+  path: '/employee',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
 const DashboardDashboardRoute = DashboardDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => DashboardRouteRoute,
+} as any)
+const AuthRegisterRoute = AuthRegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => AuthRouteRoute,
 } as any)
 const AuthOtpVerifyRoute = AuthOtpVerifyRouteImport.update({
   id: '/otp-verify',
@@ -49,13 +73,21 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof AuthLoginRoute
   '/otp-verify': typeof AuthOtpVerifyRoute
+  '/register': typeof AuthRegisterRoute
   '/dashboard': typeof DashboardDashboardRoute
+  '/employee': typeof DashboardEmployeeRoute
+  '/message': typeof DashboardMessageRoute
+  '/tasks': typeof DashboardTasksRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof AuthLoginRoute
   '/otp-verify': typeof AuthOtpVerifyRoute
+  '/register': typeof AuthRegisterRoute
   '/dashboard': typeof DashboardDashboardRoute
+  '/employee': typeof DashboardEmployeeRoute
+  '/message': typeof DashboardMessageRoute
+  '/tasks': typeof DashboardTasksRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -64,13 +96,33 @@ export interface FileRoutesById {
   '/_dashboard': typeof DashboardRouteRouteWithChildren
   '/_auth/login': typeof AuthLoginRoute
   '/_auth/otp-verify': typeof AuthOtpVerifyRoute
+  '/_auth/register': typeof AuthRegisterRoute
   '/_dashboard/dashboard': typeof DashboardDashboardRoute
+  '/_dashboard/employee': typeof DashboardEmployeeRoute
+  '/_dashboard/message': typeof DashboardMessageRoute
+  '/_dashboard/tasks': typeof DashboardTasksRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/otp-verify' | '/dashboard'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/otp-verify'
+    | '/register'
+    | '/dashboard'
+    | '/employee'
+    | '/message'
+    | '/tasks'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/otp-verify' | '/dashboard'
+  to:
+    | '/'
+    | '/login'
+    | '/otp-verify'
+    | '/register'
+    | '/dashboard'
+    | '/employee'
+    | '/message'
+    | '/tasks'
   id:
     | '__root__'
     | '/'
@@ -78,7 +130,11 @@ export interface FileRouteTypes {
     | '/_dashboard'
     | '/_auth/login'
     | '/_auth/otp-verify'
+    | '/_auth/register'
     | '/_dashboard/dashboard'
+    | '/_dashboard/employee'
+    | '/_dashboard/message'
+    | '/_dashboard/tasks'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -110,12 +166,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_dashboard/tasks': {
+      id: '/_dashboard/tasks'
+      path: '/tasks'
+      fullPath: '/tasks'
+      preLoaderRoute: typeof DashboardTasksRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/_dashboard/message': {
+      id: '/_dashboard/message'
+      path: '/message'
+      fullPath: '/message'
+      preLoaderRoute: typeof DashboardMessageRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/_dashboard/employee': {
+      id: '/_dashboard/employee'
+      path: '/employee'
+      fullPath: '/employee'
+      preLoaderRoute: typeof DashboardEmployeeRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
     '/_dashboard/dashboard': {
       id: '/_dashboard/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardDashboardRouteImport
       parentRoute: typeof DashboardRouteRoute
+    }
+    '/_auth/register': {
+      id: '/_auth/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof AuthRegisterRouteImport
+      parentRoute: typeof AuthRouteRoute
     }
     '/_auth/otp-verify': {
       id: '/_auth/otp-verify'
@@ -137,11 +221,13 @@ declare module '@tanstack/react-router' {
 interface AuthRouteRouteChildren {
   AuthLoginRoute: typeof AuthLoginRoute
   AuthOtpVerifyRoute: typeof AuthOtpVerifyRoute
+  AuthRegisterRoute: typeof AuthRegisterRoute
 }
 
 const AuthRouteRouteChildren: AuthRouteRouteChildren = {
   AuthLoginRoute: AuthLoginRoute,
   AuthOtpVerifyRoute: AuthOtpVerifyRoute,
+  AuthRegisterRoute: AuthRegisterRoute,
 }
 
 const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
@@ -150,10 +236,16 @@ const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
 
 interface DashboardRouteRouteChildren {
   DashboardDashboardRoute: typeof DashboardDashboardRoute
+  DashboardEmployeeRoute: typeof DashboardEmployeeRoute
+  DashboardMessageRoute: typeof DashboardMessageRoute
+  DashboardTasksRoute: typeof DashboardTasksRoute
 }
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
   DashboardDashboardRoute: DashboardDashboardRoute,
+  DashboardEmployeeRoute: DashboardEmployeeRoute,
+  DashboardMessageRoute: DashboardMessageRoute,
+  DashboardTasksRoute: DashboardTasksRoute,
 }
 
 const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(

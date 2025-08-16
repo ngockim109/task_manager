@@ -24,6 +24,7 @@ const Loading = ({
   return (
     <div
       className={`animate-spin border-t-transparent border border-2 rounded-full ${variantStyle[variant]} ${sizeStyle[size]} ${className}`}
+      {...props}
     ></div>
   )
 }
