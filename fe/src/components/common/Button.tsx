@@ -1,7 +1,7 @@
 import React from 'react'
 import Loading from './Loading'
 import type { ForwardRefExoticComponent, RefAttributes } from 'react'
-import type { LucideProps } from 'lucide-react'
+import type {LucideProps} from 'lucide-react';
 
 export interface ButtonProps extends React.ComponentProps<'button'> {
   variant?: 'default' | 'outline' | 'danger'
@@ -22,6 +22,8 @@ const Button = ({
   icon,
   ...props
 }: ButtonProps) => {
+const Icon = icon
+
   const variantStyle = {
     default: 'bg-primary text-primary-foreground',
     danger: 'bg-danger text-danger-foreground',
@@ -42,7 +44,7 @@ const Button = ({
       <div
         className={`flex gap-1 items-center justify-center ${vertical && 'flex-col'}`}
       >
-        {icon}
+        {Icon && <Icon className="w-4 h-4"/>}
         {children}
       </div>
     </button>
