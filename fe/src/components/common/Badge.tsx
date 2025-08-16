@@ -1,10 +1,9 @@
-import type React from "react"
+import type React from 'react'
 
 interface LoadingProps extends React.ComponentProps<'div'> {
   size?: 'small' | 'medium' | 'large'
-  variant?: 'default' | 'active' | "ban" | "inactive"
+  variant?: 'default' | 'active' | 'ban' | 'inactive'
 }
-
 
 const Badge = ({
   size = 'medium',
@@ -12,7 +11,7 @@ const Badge = ({
   className,
   ...props
 }: LoadingProps) => {
-    const sizeStyle = {
+  const sizeStyle = {
     small: 'p-2',
     medium: 'p-4',
     large: 'p-6',
@@ -25,7 +24,12 @@ const Badge = ({
     inactive: 'bg-muted/30 text-muted-foreground hover:bg-muted/40',
   }
   return (
-    <div className={`rounded-full ${sizeStyle[size]} ${variantStyle[variant]} ${className}`} {...props}>Badge</div>
+    <div
+      className={`rounded-full ${sizeStyle[size]} ${variantStyle[variant]} ${className}`}
+      {...props}
+    >
+      Badge
+    </div>
   )
 }
 

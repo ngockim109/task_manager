@@ -8,7 +8,7 @@ const PrimaryLink = ({
   ...props
 }: LinkComponentProps) => {
   return (
-    <Link to={to} className="text-blue-500">
+    <Link to={to} className={`text-blue-500 ${className}`} {...props}>
       {children}
     </Link>
   )

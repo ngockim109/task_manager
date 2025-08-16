@@ -1,10 +1,14 @@
 import React from 'react'
 import Loading from './Loading'
+import type { ForwardRefExoticComponent, RefAttributes } from 'react'
+import type { LucideProps } from 'lucide-react'
 
 export interface ButtonProps extends React.ComponentProps<'button'> {
   variant?: 'default' | 'outline' | 'danger'
   loading?: boolean
-  icon?: React.ReactNode
+  icon?: ForwardRefExoticComponent<
+    Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>
+  >
   vertical?: boolean
 }
 
