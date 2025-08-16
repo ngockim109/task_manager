@@ -1,15 +1,83 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@config "../tailwind.config.js";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: 275 54% 100%;
+  --foreground: 275 79% 1%;
+  --muted: 275 32% 91%;
+  --muted-foreground: 275 13% 32%;
+  --popover: 275 54% 100%;
+  --popover-foreground: 275 79% 1%;
+  --card: 275 54% 100%;
+  --card-foreground: 275 79% 1%;
+  --border: 275 13% 93%;
+  --input: 275 13% 93%;
+  --primary: 275 52% 27%;
+  --primary-foreground: 275 52% 87%;
+  --secondary: 275 12% 81%;
+  --secondary-foreground: 275 12% 21%;
+  --accent: 275 21% 75%;
+  --accent-foreground: 275 21% 15%;
+  --destructive: 14 100% 25%;
+  --destructive-foreground: 14 100% 85%;
+  --ring: 275 52% 27%;
+  --chart-1: 275 52% 27%;
+  --chart-2: 275 12% 81%;
+  --chart-3: 275 21% 75%;
+  --chart-4: 275 12% 84%;
+  --chart-5: 275 55% 27%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 275 34% 4%;
+  --foreground: 275 13% 97%;
+  --muted: 275 32% 9%;
+  --muted-foreground: 275 13% 68%;
+  --popover: 275 34% 4%;
+  --popover-foreground: 275 13% 97%;
+  --card: 275 34% 4%;
+  --card-foreground: 275 13% 97%;
+  --border: 275 13% 10%;
+  --input: 275 13% 10%;
+  --primary: 275 52% 27%;
+  --primary-foreground: 275 52% 87%;
+  --secondary: 275 3% 16%;
+  --secondary-foreground: 275 3% 76%;
+  --accent: 275 11% 24%;
+  --accent-foreground: 275 11% 84%;
+  --destructive: 14 100% 54%;
+  --destructive-foreground: 0 0% 100%;
+  --ring: 275 52% 27%;
+  --chart-1: 275 52% 27%;
+  --chart-2: 275 3% 16%;
+  --chart-3: 275 11% 24%;
+  --chart-4: 275 3% 19%;
+  --chart-5: 275 55% 27%;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
 
 body {
   @apply m-0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family:
+    source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

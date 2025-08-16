@@ -13,6 +13,7 @@ import { Route as DashboardRouteRouteImport } from './routes/_dashboard/route'
 import { Route as AuthRouteRouteImport } from './routes/_auth/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardDashboardRouteImport } from './routes/_dashboard/dashboard'
+import { Route as AuthOtpVerifyRouteImport } from './routes/_auth/otp-verify'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
 
 const DashboardRouteRoute = DashboardRouteRouteImport.update({
@@ -33,6 +34,11 @@ const DashboardDashboardRoute = DashboardDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => DashboardRouteRoute,
 } as any)
+const AuthOtpVerifyRoute = AuthOtpVerifyRouteImport.update({
+  id: '/otp-verify',
+  path: '/otp-verify',
+  getParentRoute: () => AuthRouteRoute,
+} as any)
 const AuthLoginRoute = AuthLoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -42,11 +48,13 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof AuthLoginRoute
+  '/otp-verify': typeof AuthOtpVerifyRoute
   '/dashboard': typeof DashboardDashboardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof AuthLoginRoute
+  '/otp-verify': typeof AuthOtpVerifyRoute
   '/dashboard': typeof DashboardDashboardRoute
 }
 export interface FileRoutesById {
@@ -55,19 +63,21 @@ export interface FileRoutesById {
   '/_auth': typeof AuthRouteRouteWithChildren
   '/_dashboard': typeof DashboardRouteRouteWithChildren
   '/_auth/login': typeof AuthLoginRoute
+  '/_auth/otp-verify': typeof AuthOtpVerifyRoute
   '/_dashboard/dashboard': typeof DashboardDashboardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/dashboard'
+  fullPaths: '/' | '/login' | '/otp-verify' | '/dashboard'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/dashboard'
+  to: '/' | '/login' | '/otp-verify' | '/dashboard'
   id:
     | '__root__'
     | '/'
     | '/_auth'
     | '/_dashboard'
     | '/_auth/login'
+    | '/_auth/otp-verify'
     | '/_dashboard/dashboard'
   fileRoutesById: FileRoutesById
 }
@@ -107,6 +117,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardDashboardRouteImport
       parentRoute: typeof DashboardRouteRoute
     }
+    '/_auth/otp-verify': {
+      id: '/_auth/otp-verify'
+      path: '/otp-verify'
+      fullPath: '/otp-verify'
+      preLoaderRoute: typeof AuthOtpVerifyRouteImport
+      parentRoute: typeof AuthRouteRoute
+    }
     '/_auth/login': {
       id: '/_auth/login'
       path: '/login'
@@ -119,10 +136,12 @@ declare module '@tanstack/react-router' {
 
 interface AuthRouteRouteChildren {
   AuthLoginRoute: typeof AuthLoginRoute
+  AuthOtpVerifyRoute: typeof AuthOtpVerifyRoute
 }
 
 const AuthRouteRouteChildren: AuthRouteRouteChildren = {
   AuthLoginRoute: AuthLoginRoute,
+  AuthOtpVerifyRoute: AuthOtpVerifyRoute,
 }
 
 const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(

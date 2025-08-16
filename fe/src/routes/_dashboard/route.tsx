@@ -6,10 +6,12 @@ export const Route = createFileRoute('/_dashboard')({
 })
 
 function RouteComponent() {
-  return <div>
-    <Header/>
-    <main>
-      <Outlet/>
-    </main>
-  </div>
+  return (
+    <div>
+      <Header />
+      <main>
+        <Outlet />
+      </main>
+    </div>
+  )
 }
