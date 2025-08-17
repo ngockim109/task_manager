@@ -1,14 +1,14 @@
-import express, { type Express, type Request, type Response } from "express";
-import cors from "cors"
-import * as bodyParser from 'body-parser';
-import dotenv from "dotenv"
-import router from "./app/routes/index.ts";
+import express, { type Express, type Request, type Response } from 'express'
+import cors from 'cors'
+import * as bodyParser from 'body-parser'
+import dotenv from 'dotenv'
+import router from './app/routes/index.ts'
 
 dotenv.config()
 const app: Express = express()
 const port = process.env.PORT || 3000
 
-app.use("/api/v1", router)
+app.use('/api/v1', router)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

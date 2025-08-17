@@ -1,16 +1,12 @@
-import type { Request, Response } from "express";
+import type { Request, Response } from 'express'
 
-const sendMessage = async(req: Request, res: Response) => {
+const sendMessage = async (req: Request, res: Response) => {}
 
-}
-
-const getConversation = async(req: Request, res: Response) => {
-
-}
+const getConversation = async (req: Request, res: Response) => {}
 
 const messageController = {
-    sendMessage,
-    getConversation
+  sendMessage,
+  getConversation,
 }
 
-export default messageController;
+export default messageController

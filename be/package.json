@@ -10,19 +10,27 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/index.ts",
     "build": "tsc",
-    "start": "nodemon --watch src --ext ts --exec ts-node src/index.ts"
+    "start": "nodemon --watch src --ext ts --exec ts-node src/index.ts",
+    "check": "prettier --write . && eslint --fix"
   },
   "dependencies": {
     "@types/express": "^5.0.3",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "firebase": "^12.1.0",
     "jsonwebtoken": "^9.0.2",
     "nodemon": "^3.1.10"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/node": "^24.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.39.1",
+    "@typescript-eslint/parser": "^8.39.1",
+    "eslint": "^9.33.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.6.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
   }

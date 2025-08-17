@@ -1,5 +1,5 @@
 export interface IMetadata {
-    id: string;
-    createdAt: string;
-    updatedAt: string;
+  id: string
+  createdAt: string
+  updatedAt: string
 }
