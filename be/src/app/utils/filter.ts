@@ -1,4 +1,4 @@
-import { OrderEnum } from '../enums/order.enum.ts'
+import { Order, type OrderEnum } from '../enums/order.enum.ts'
 import type { IFilter } from '../interface/filter.interface.ts'
 
 export const parseFilterQuery = (query: any): IFilter => {
@@ -7,7 +7,7 @@ export const parseFilterQuery = (query: any): IFilter => {
   const limitParam = parseInt(limit ?? '') ?? 10
   const fieldsParam = (fields?.split(',') ?? []) as string[]
   const filtersParam = filters ?? {}
-  const orderParam = (order as OrderEnum) ?? OrderEnum.DESC
+  const orderParam = (order as OrderEnum) ?? Order.DESC
   const queryParams: IFilter = {
     page: pageParam,
     limit: limitParam,

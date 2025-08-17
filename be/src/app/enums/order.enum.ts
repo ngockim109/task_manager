@@ -1,4 +1,6 @@
-export enum OrderEnum {
-  ASC = 'ASC',
-  DESC = 'DESC',
-}
+export const Order = {
+  ASC: 'ASC',
+  DESC: 'DESC',
+} as const;
+
+export type OrderEnum = typeof Order[keyof typeof Order]
