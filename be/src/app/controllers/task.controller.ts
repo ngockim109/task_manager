@@ -19,7 +19,7 @@ const createTask = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { status, title, description, dueDate, completedDate, users } =
       req.body
-    const newTask: ITask = {
+    const newTask: Partial<ITask> = {
       status,
       title,
       description,
@@ -38,7 +38,7 @@ const updateTask = async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params
     const { status, title, description, dueDate, completedDate, users } =
       req.body
-    const newTask: ITask = {
+    const newTask: Partial<ITask> = {
       status,
       title,
       description,
