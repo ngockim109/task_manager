@@ -20,3 +20,11 @@ export interface ITaskFilter {
   completedDate: string
   users: string[]
 }
+
+export interface IPaginationResult<T> {
+  data: T[] | []
+  total: number
+  totalPages: number
+  page: number
+  limit: number
+}
