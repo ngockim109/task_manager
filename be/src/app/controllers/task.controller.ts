@@ -15,6 +15,7 @@ const getTasks = async (req: Request, res: Response, next: NextFunction) => {
     res.status(400).json({ message: 'Fail to get tasks!', error })
   }
 }
+
 const createTask = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { status, title, description, dueDate, completedDate, users } =
@@ -33,6 +34,7 @@ const createTask = async (req: Request, res: Response, next: NextFunction) => {
     next(error)
   }
 }
+
 const updateTask = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params

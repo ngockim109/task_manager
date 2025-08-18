@@ -10,6 +10,7 @@ import {
   query,
   ref,
   remove,
+  serverTimestamp,
   set,
   startAt,
   update,
@@ -38,13 +39,13 @@ class BaseRepository<T = any> {
   insert = async (data: Partial<T>): Promise<Partial<T>> => {
     const tableRef = this.getRef()
     const newTableRef = push(tableRef)
-    await set(newTableRef, data)
+    await set(newTableRef, {...data, createdAt: serverTimestamp(), updatedAt: serverTimestamp()} )
     return { ...data, id: newTableRef.key }
   }
 
   updateData = async (id: string, data: Partial<T>): Promise<Partial<T>> => {
     const tableRef = this.getRef(id)
-    await update(tableRef, data)
+    await update(tableRef, {...data, updatedAt: serverTimestamp()})
     return { ...data, id: id }
   }
 
