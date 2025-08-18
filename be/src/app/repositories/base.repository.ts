@@ -39,13 +39,17 @@ class BaseRepository<T = any> {
   insert = async (data: Partial<T>): Promise<Partial<T>> => {
     const tableRef = this.getRef()
     const newTableRef = push(tableRef)
-    await set(newTableRef, {...data, createdAt: serverTimestamp(), updatedAt: serverTimestamp()} )
+    await set(newTableRef, {
+      ...data,
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
+    })
     return { ...data, id: newTableRef.key }
   }
 
   updateData = async (id: string, data: Partial<T>): Promise<Partial<T>> => {
     const tableRef = this.getRef(id)
-    await update(tableRef, {...data, updatedAt: serverTimestamp()})
+    await update(tableRef, { ...data, updatedAt: serverTimestamp() })
     return { ...data, id: id }
   }
 
@@ -149,32 +153,32 @@ class BaseRepository<T = any> {
     items: any[],
     filters: Record<string, unknown>,
   ): Partial<T>[] => {
-    return items.filter(item => {
-        return Object.entries(filters).every(([key, value]) => {
-            if(key in item) {
-                const dataValue = item[key];
+    return items.filter((item) => {
+      return Object.entries(filters).every(([key, value]) => {
+        if (key in item) {
+          const dataValue = item[key]
 
-                if(typeof value === "string") {
-                    return dataValue.toLowerCase().includes(value.toLocaleLowerCase())
-                } else if(Array.isArray(value)) {
-                    return value.includes(dataValue)
-                } else {
-                    return value === dataValue
-                }
-            }
-            return false;
-        })
+          if (typeof value === 'string') {
+            return dataValue.toLowerCase().includes(value.toLocaleLowerCase())
+          } else if (Array.isArray(value)) {
+            return value.includes(dataValue)
+          } else {
+            return value === dataValue
+          }
+        }
+        return false
+      })
     })
   }
 
   selectFields = (items: any[], fields: string[]): Partial<T>[] => {
     return items.map((item) => {
-        const selectedItem: Partial<T> = {}
-        fields.forEach((field) => {
-            // @ts-expect-error
-            selectedItem[field] = items[field]
-        })
-        return selectedItem;
+      const selectedItem: Partial<T> = {}
+      fields.forEach((field) => {
+        // @ts-expect-error
+        selectedItem[field] = items[field]
+      })
+      return selectedItem
     })
   }
 }

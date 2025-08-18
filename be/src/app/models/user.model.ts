@@ -11,5 +11,5 @@ export interface IUser extends IMetadata {
   address: string
   role: IRole
   department: string
-  tasks: ITask[]
+  taskIds?: string[]
 }
